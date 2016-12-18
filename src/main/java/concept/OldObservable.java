@@ -29,11 +29,22 @@ public class OldObservable {
          */
 
         IntObservable intObservable = new IntObservable();
-        intObservable.addObserver((Observable o, Object arg) -> log.info("{}", arg));
+        intObservable.addObserver(generateObserver());
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.execute(intObservable);
         log.info("Shutdown");
         executor.shutdown();
+    }
+
+    private static Observer generateObserver() {
+
+        /**
+         * 에러가 난 경우는? 처리가 완료된 경우는?<br/>
+         * 직접 이 2가지 경우를 대응할 수는 있지만 Observable 자체에서 제공해주지는 않는다.<br/>
+         * reactive는 이 2가지 문제를 어떻게 해결하고 있을까? 아래 링크를 참고 <br/>
+         * https://github.com/reactive-streams/reactive-streams-jvm/tree/v1.0.0
+         */
+        return (Observable o, Object arg) -> log.info("{}", arg);
     }
 
     static class IntObservable extends Observable implements Runnable {
