@@ -1,11 +1,11 @@
 package concept;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Observable;
 import java.util.Observer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * 자바 9에서 Deprecated 된 Observable의 간단한 쓰임<br/>
@@ -17,15 +17,15 @@ public class OldObservable {
     public static void main(String[] args) {
 
         /**
-         * Functional Interface -> 다음 문단의 2줄로 대체 가능
-        IntObservable intObservable = new IntObservable();
-        intObservable.addObserver(new Observer() {
+         Functional Interface -> 다음 문단의 2줄로 대체 가능
+         IntObservable intObservable = new IntObservable();
+         intObservable.addObserver(new Observer() {
 
-            @Override
-            public void update(Observable o, Object arg) {
-                log.info("{}", arg);
-            }
-        });
+             @Override
+             public void update(Observable o, Object arg) {
+                 log.info("{}", arg);
+             }
+         });
          */
 
         IntObservable intObservable = new IntObservable();
